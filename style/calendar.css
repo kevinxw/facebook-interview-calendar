@@ -1,0 +1,216 @@
+/*
+    We are going to apply facebook style here
+    reference: http://goo.gl/m7H8JP
+*/
+
+body {
+    font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+    margin: 0 20px 0 20px;
+}
+
+#bluebar {
+    background-color: #3b5998;
+    background-size: auto;
+    background-position: 0 0;
+    border: 0;
+    -webkit-box-shadow: none;
+    height: 42px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+#pageHead {
+    padding-left: 1px;
+    background-image: url("http://familymedicine.uams.edu/files/2010/10/facebook-logo-1024x787-720x553.png");
+    padding-top: 0;
+    margin: 0;
+    height: 42px;
+    width: 110px;
+    background-size: 100% auto;
+    background-position: 0 -105px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.timeslots {
+    float: left;
+    width: 70px;
+    text-align: right;
+    margin-top: 0;
+    margin-left: 5px;
+    padding-left: 0;
+}
+
+.timeslot {
+    height: 30px; /* we have 12 hours with the total height 720px */
+}
+
+.timeslot .time {
+    width: 100px;
+    position: relative;
+    float: right;
+    margin-right: 10px;
+    height: 15px;
+}
+
+/* display AM/PM */
+.timeslot .period {
+    font-size: 11px;
+    color: gray;
+    padding-left: 3px;
+    font-weight: normal;
+    margin-right: -15px;
+}
+
+/* x o'clock */
+.timeslot:nth-child(odd) .time {
+    color: #333333;
+    font-size: 13px;
+    font-weight: bold;
+    width: 50px;
+    text-align: right;
+}
+
+/* half o'clock */
+.timeslot:nth-child(even) .time {
+    color: gray;
+    font-size: 11px;
+    margin-right: -5px;
+}
+
+/* here we are going to hold events */
+.event-container {
+    width: 600px;
+    height: 720px;
+    padding: 10px;
+    background-color: #eceff6;
+    border: 1px solid #d4dae8;
+    color: #333333;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-left: 90px;
+    margin-left: 100px \9/IE9; /* Hacking for IE9, it works for IE8 as well, however we don't support it */
+    display: block;
+}
+
+.events {
+    float: left;
+    margin: -10px 0 0 50px;
+    height: 25px;
+    overflow-y: visible;
+    text-align: left;
+    width: 615px;
+}
+
+.event {
+    background-color: #f7f7f7;
+    border: 1px solid #cccccc;
+    color: #333333;
+    /* make sure each event takes exactly 30px, height of the timeslot */
+    padding: 1px 5px;
+    font-size: 11px;
+    font-weight: bold;
+    /* override the left border */
+    border-left-color: #3b5998;
+    border-left-width: 4px;
+    width: 595px;
+    float: left;
+    min-height: 26px;
+    position: relative;
+}
+
+/* put holders for ghost event */
+.event.event-bubble, .event.event-following {
+    visibility: hidden;
+    min-height: 0;
+    height: 0 !important;
+    padding: 0 5px;
+    margin-top: 0 !important;
+    z-index: -1;
+}
+
+.event .title {
+    color: #3b5998;
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.event .interval {
+    display: none;
+}
+
+.event .location {
+    color: gray;
+    font-size: 11px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.event:first-child ~ .event {
+    margin-left: 5px; /* 288px+20px margin */
+}
+
+/* automatically divide column */
+.event:nth-last-child(2),
+.event:nth-last-child(2) ~ .event,
+.timeslot .events[cols="1"] .event {
+    width: 288px; /* 595/2-5 we can use calc(), bad compatibility though */
+}
+
+/* of course they can be generated with jQuery as well */
+.event:nth-last-child(3),
+.event:nth-last-child(3) ~ .event,
+.timeslot .events[cols="2"] .event {
+    width: 185px;
+}
+
+.event:nth-last-child(4),
+.event:nth-last-child(4) ~ .event,
+.timeslot .events[cols="3"] .event {
+    width: 134px;
+}
+
+.event:nth-last-child(5),
+.event:nth-last-child(5) ~ .event,
+.timeslot .events[cols="4"] .event {
+    width: 103px;
+}
+
+.event:nth-last-child(6),
+.event:nth-last-child(6) ~ .event,
+.timeslot .events[cols="5"] .event {
+    width: 83px;
+}
+
+.page-selector {
+    margin: -400px 720px;
+    margin-left: 660px \9/ IE9; /* Hacking for IE9 */
+    float: left;
+    position: relative;
+}
+
+.left-arrow, .right-arrow {
+    background-image: url('up-arrow.png');
+    background-size: 100% auto;
+    height: 30px;
+    width: 30px;
+    margin: 8px 0;
+    cursor: pointer;
+    display: none;
+}
+
+.left-arrow {
+    -ms-transform: rotate(-90deg); /* IE 9 */
+    -webkit-transform: rotate(-90deg); /* Safari and Chrome */
+    transform: rotate(-90deg);
+}
+
+.right-arrow {
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari and Chrome */
+    transform: rotate(90deg);
+}
